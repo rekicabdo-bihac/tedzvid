@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="bs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Interaktivni Tedžvid – Abdo ef. Rekić</title>
+<style>
+:root{--bg:#071d17;--panel:#0d2c22;--card:#12392c;--gold:#f2cf75;--text:#f8f5e9;--muted:#c8d8d0;--ok:#49c987;--bad:#ff7c76}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;background:linear-gradient(160deg,#061812,#0b2b21);color:var(--text)}
+.wrap{max-width:860px;margin:auto;padding:14px}.hero{text-align:center;padding:18px 10px}.hero h1{margin:0;color:var(--gold);font-size:clamp(25px,6vw,42px)}.hero p{margin:7px 0;color:var(--muted)}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;padding:6px 0 8px;z-index:3}.tabs button,.btn,.ans{border:1px solid #426b5c;background:#12392c;color:white;border-radius:12px;min-height:46px;padding:9px;font-weight:700}.tabs button.active,.btn{background:var(--gold);color:#17231d;border-color:var(--gold)}
+.panel{background:#0d2c22;border:1px solid #315849;border-radius:18px;padding:16px;margin:12px 0}.panel h2{color:var(--gold);margin:0 0 10px}.arab{font-family:"Noto Naskh Arabic","Amiri","Traditional Arabic",serif;font-size:30px;direction:rtl;line-height:1.8;text-align:center}.rulegrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.rule{background:#12392c;border-radius:15px;padding:13px;border:1px solid #315849}.rule b{color:var(--gold)}.letters{font-size:28px;direction:rtl;text-align:center;margin:8px 0}.small{font-size:14px;color:var(--muted)}.hide{display:none}.q{font-size:19px;font-weight:800;margin:8px 0 13px}.answers{display:grid;gap:8px}.ans{text-align:left}.ans.correct{background:#174f36;border-color:var(--ok)}.ans.wrong{background:#5b2927;border-color:var(--bad)}.status{min-height:28px;margin-top:10px;font-weight:800}.progress{height:10px;background:#173d31;border-radius:10px;overflow:hidden;margin:10px 0}.progress i{display:block;height:100%;background:var(--gold);width:0}.score{text-align:center;font-size:22px;color:var(--gold);font-weight:900}.footer{text-align:center;color:var(--muted);font-size:13px;padding:18px}.pill{display:inline-block;padding:5px 9px;border-radius:999px;background:#173d31;margin:3px}.note{border-left:4px solid var(--gold);padding:10px 12px;background:#12392c;border-radius:10px}
+@media(max-width:600px){.tabs{grid-template-columns:repeat(2,1fr)}.rulegrid{grid-template-columns:1fr}.wrap{padding:9px}.arab{font-size:27px}}
+
+.lessonMenu{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.lessonCard{min-height:78px;border:1px solid #426b5c;background:#12392c;color:white;border-radius:15px;padding:14px;text-align:left;font-size:16px}
+.lessonCard b{display:block;color:var(--gold);font-size:18px;margin-bottom:5px}.lessonCard span{color:var(--muted)}
+.backBtn{border:0;background:var(--gold);color:#17231d;border-radius:11px;padding:10px 13px;font-weight:800;margin:5px 0 10px}
+@media(max-width:600px){.lessonMenu{grid-template-columns:1fr}}
+
+.stickyTop{
+ position:sticky;top:0;z-index:20;
+ background:linear-gradient(160deg,#061812f7,#0b2b21f7);
+ border-bottom:1px solid #315849;
+ padding:0 4px;
+ backdrop-filter:blur(8px);
+}
+.stickyTop .hero{padding:7px 5px 2px}
+.stickyTop .hero h1{font-size:clamp(20px,5vw,29px);line-height:1.1}
+.stickyTop .hero p{margin:2px 0;font-size:12px}
+.stickyTop .hero p:first-of-type{display:none}
+.stickyTop .tabs button{min-height:39px;padding:6px 4px;font-size:12px}
+@media(max-width:600px){
+ .stickyTop .tabs{grid-template-columns:repeat(4,1fr);gap:4px}
+ .stickyTop .tabs button{font-size:11px;min-height:38px}
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="stickyTop"><section class="hero">
+<h1>Interaktivni TEDŽVID</h1>
+<p>Interaktivna lekcija tedžvida • prema knjizi <b>Tedžvid – Pravilno učenje Kur'ana</b></p>
+<p style='font-size:18px'><b>Pripremio Abdo ef. Rekić</b></p>
+</section>
+
+<nav class="tabs">
+<button class="active" data-tab="uci">📖 Nauči</button>
+<button data-tab="prepoznaj">👁️ Prepoznaj</button>
+<button data-tab="spoji">🔗 Spoji</button>
+<button data-tab="kviz">🏆 Ispit</button>
+</nav></div>
+
+<section id="uci" class="tab">
+<div id="lessonMenu">
+<div class="panel"><h2>Odaberi lekciju</h2><p>Svaka oblast je odvojena kao posebna lekcija.</p>
+<div class="lessonMenu"><button class="lessonCard" onclick="openLesson(0)"><b>1. Nun i tenvin</b><span>Otvori lekciju →</span></button><button class="lessonCard" onclick="openLesson(1)"><b>2. Mim sākin</b><span>Otvori lekciju →</span></button><button class="lessonCard" onclick="openLesson(2)"><b>3. Idgam mislejn</b><span>Otvori lekciju →</span></button><button class="lessonCard" onclick="openLesson(3)"><b>4. Hukmu-r-Rā’</b><span>Otvori lekciju →</span></button><button class="lessonCard" onclick="openLesson(4)"><b>5. Lafzatullah</b><span>Otvori lekciju →</span></button><button class="lessonCard" onclick="openLesson(5)"><b>6. Damir</b><span>Otvori lekciju →</span></button><button class="lessonCard" onclick="openLesson(6)"><b>7. Kalkala</b><span>Otvori lekciju →</span></button><button class="lessonCard" onclick="openLesson(7)"><b>8. Dužine (meddovi)</b><span>Otvori lekciju →</span></button></div></div></div>
+<div class="lessonPage hide" id="lesson0"><button class="backBtn" onclick="backLessons()">← Sve lekcije</button><div class="panel">
+<h2>نْ i tenvin ـً ـٍ ـٌ — pravila harfa NUN</h2>
+<p>Kada je <b>nun sākin (نْ)</b> ili <b>tenvin</b>, pravilo zavisi od sljedećeg harfa.</p>
+<div class="rulegrid">
+<div class="rule"><b>IZHAR – إظهار</b><p>Nun sākin ili tenvin izgovara se jasno i odsječno pred šest grlenih glasova.</p><div class="letters">ء ه ع ح غ خ</div><div class="arab">مِنْهُمْ &nbsp; قَوْمٍ هَادٍ</div></div>
+<div class="rule"><b>IDGAM SA GUNNOM</b><p>Slivanje uz nazalni izgovor.</p><div class="letters">ي ن م و</div><div class="arab">مَنْ يَعْمَلْ &nbsp; مِنْ وَالٍ</div></div>
+<div class="rule"><b>IDGAM BEZ GUNNE</b><p>Potpuno slivanje bez nazalnog tona.</p><div class="letters">ل ر</div><div class="arab">مِنْ رَبِّهِمْ</div></div>
+<div class="rule"><b>IKLAB – إقلاب</b><p>Pred harfom <b>ب</b>, nun se pretvara u mim uz nazalni izgovor.</p><div class="letters">ب</div><div class="arab">مِنْ بَعْدِ</div></div>
+<div class="rule"><b>IHFA – إخفاء</b><p>Ishodište nuna se skriva, a ostaje gunna.</p><div class="letters">ص ذ ث ك ج ش ق س د ط ز ف ت ض ظ</div><div class="arab">مِنْ قَبْلِكَ &nbsp; مِنْ شَيْءٍ</div></div>
+</div>
+</div>
+
+</div><div class="lessonPage hide" id="lesson1"><button class="backBtn" onclick="backLessons()">← Sve lekcije</button><div class="panel">
+<h2>مْ — pravila harfa MIM</h2>
+<div class="rulegrid">
+<div class="rule"><b>IDGAM MISLEJN / ŠEFEVIJJUN</b><p>Kada se <b>مْ</b> na kraju riječi susretne sa <b>م</b> na početku sljedeće riječi, dva ista glasa slivaju se u jedan uz gunnu.</p><div class="arab">لَكُمْ مَا</div></div>
+<div class="rule"><b>IHFA ŠEFEVIJJUN</b><p>Kada poslije <b>مْ</b> dođe <b>ب</b>, mim se zadržava na usnama uz nazalni izgovor.</p><div class="letters">مْ + ب</div><div class="arab">تَرْمِيهِمْ بِحِجَارَةٍ</div></div>
+<div class="rule"><b>IZHAR ŠEFEVIJJUN</b><p>U ostalim slučajevima mim sākin izgovara se jasno i odsječno. Posebno treba paziti pred <b>ف</b> i <b>و</b> da se mim ne izgubi ili ne uklopi.</p><div class="arab">عَلَيْهِمْ وَلَا الضَّالِّينَ</div></div>
+</div>
+</div>
+
+</div><div class="lessonPage hide" id="lesson2"><button class="backBtn" onclick="backLessons()">← Sve lekcije</button><div class="panel">
+<h2>IDGAM MISLEJN – إدغام المثلين</h2>
+<p><b>Idgam mislejn</b> znači <b>slivanje dvaju istih glasova</b>. Kada se na kraju jedne, a na početku sljedeće riječi nađu dva ista glasa, prvi sākin a drugi sa hareketom, prvi se uklapa u drugi.</p>
+<div class="rulegrid">
+<div class="rule"><b>Osnovno pravilo</b><p>Dva ista glasa izgovaraju se kao jedan udvostručeni glas.</p><div class="arab">قَدْ دَخَلُوا</div></div>
+<div class="rule"><b>MIM + MIM</b><p>Kada se <b>مْ</b> susretne sa <b>م</b>, slivanje je uz nazalni izgovor – gunnu.</p><div class="arab">لَكُمْ مَا</div></div>
+</div>
+<div class="note">Zapamti: <b>isti harf + isti harf → slivanje u jedan udvostručeni glas.</b></div>
+</div>
+
+</div><div class="lessonPage hide" id="lesson3"><button class="backBtn" onclick="backLessons()">← Sve lekcije</button><div class="panel">
+<h2>ر — HUKMU-R-RĀ’: izgovor harfa RA</h2>
+<p>Harf <b>ر</b> u Kur’anu izgovara se <b>krupno (tefhim)</b> ili <b>tanko (terkik)</b>, zavisno od hareketa i glasova oko njega.</p>
+<div class="rulegrid">
+<div class="rule"><b>KRUPNO</b><p>kada je ر sa fethom ili dammom; kada je sākin, a prije njega je fetha ili damma; te u još nekim slučajevima vezanim za prethodni i naredni glas.</p><div class="arab">رَبَّنَا &nbsp; رُزِقْنَا</div></div>
+<div class="rule"><b>TANKO</b><p>Između ostalog: kada je ر sa kesrom, te kada je sākin a prije njega kesra, uz izuzetke koji se posebno obrađuju.</p><div class="arab">رِزْقًا &nbsp; فِرْعَوْنَ</div></div>
+</div>
+<div class="note">Kod harfa ر važno je učiti pravilo kroz konkretne kur’anske primjere, jer postoje posebni slučajevi i izuzeci.</div>
+</div>
+
+</div><div class="lessonPage hide" id="lesson4"><button class="backBtn" onclick="backLessons()">← Sve lekcije</button><div class="panel">
+<h2>اللّٰه — LAFZATULLAH</h2>
+<p>U riječi <b>Allah – اللّٰه</b>, udvostručeni <b>ل</b> izgovara se na dva načina:</p>
+<div class="rulegrid">
+<div class="rule"><b>KRUPNO</b><p>Kada ispred riječi Allah stoji glas sa <b>fethom ili dammom</b>.</p><div class="arab">هُوَ اللَّهُ &nbsp; عَبْدُ اللَّهِ</div></div>
+<div class="rule"><b>TANKO</b><p>Kada ispred riječi Allah stoji glas sa <b>kesrom</b>.</p><div class="arab">بِاللَّهِ &nbsp; لِلَّهِ</div></div>
+</div>
+</div>
+
+</div><div class="lessonPage hide" id="lesson5"><button class="backBtn" onclick="backLessons()">← Sve lekcije</button><div class="panel">
+<h2>هُ / هِ — DAMIR (lična zamjenica)</h2>
+<p>Lična zamjenica <b>-hu / -hi</b> može se učiti <b>kratko</b> ili <b>dugo</b>. Kratko se izgovara kada prije nje stoji jedan od dugih vokala ili kada je prethodni glas sākin; u drugim odgovarajućim položajima zamjenica se produžava.</p>
+<div class="arab">إِنَّهُ &nbsp; بِهِ</div>
+<div class="note">Postoje i posebni izuzeci, pa se pravilo primjenjuje na konkretnoj riječi u ajetu.</div>
+</div>
+
+</div><div class="lessonPage hide" id="lesson6"><button class="backBtn" onclick="backLessons()">← Sve lekcije</button><div class="panel">
+<h2>قَلْقَلَة — KALKALA</h2>
+<p>Kalkala je <b>praskanje (pucanje)</b> jednog od pet glasova kada je taj glas sākin, bilo u sredini ili na kraju riječi.</p>
+<div class="letters">ق ط ب ج د</div>
+<p class="small">Pamćenje: <b>قُطْبُ جَدٍّ</b></p>
+<div class="rulegrid">
+<div class="rule"><b>Kalkaletun sugrā</b><p>Blaže praskanje kada je glas sākin u sredini riječi.</p></div>
+<div class="rule"><b>Kalkaletun kubrā</b><p>Jače praskanje kada se stane na kraju riječi.</p></div>
+</div>
+</div>
+
+<div class="panel">
+<h2>🧠 Brzi pregled</h2>
+<p><span class="pill">NUN: Izhar • Idgam • Iklab • Ihfa</span>
+<span class="pill">MIM: Izhar šefevijjun • Ihfa šefevijjun • Idgam mislejn</span>
+<span class="pill">RA: krupno / tanko</span>
+<span class="pill">Lafzatullah: krupno / tanko</span>
+<span class="pill">Damir: kratko / dugo</span>
+<span class="pill">Kalkala: ق ط ب ج د</span></p>
+</div>
+</div><div class="lessonPage hide" id="lesson7"><button class="backBtn" onclick="backLessons()">← Sve lekcije</button><div class="panel">
+<h2>DUŽINE GLASA — أَحْكَامُ الْمُدُودِ</h2>
+<p>Dužine se dijele na <b>običnu</b> (meddun tabi‘ijjun) i <b>neobične dužine</b> (meddovi). Harfovi obične dužine su <b>ا و ي</b> uz odgovarajući prethodni hareket.</p>
+<div class="rulegrid">
+<div class="rule"><b>MEDDUN TABI‘IJJUN — obična dužina</b><p>Traje koliko izgovorimo jedno dugo a, i ili u, odnosno <b>2 hareketa</b>.</p><div class="arab">قَالَ &nbsp; يَقُولُ &nbsp; قِيلَ</div></div>
+<div class="rule"><b>UZROČNICI DUŽINE</b><p>Uzročnici neobične dužine su <b>hemze</b> ili <b>sukūn</b> (stalni ili nestalni).</p></div>
+</div>
+<h3 style="color:var(--gold)">Pet vrsta meddova</h3>
+<div class="rulegrid">
+<div class="rule"><b>1. MEDDUN MUNFESIL — مد منفصل</b><p>Iza obične dužine dolazi <b>hemze na početku sljedeće riječi</b>.</p><p><b>Trajanje: 2–4 obične dužine (hareketa).</b></p><div class="arab">قَالُوا آمَنَّا</div></div>
+<div class="rule"><b>2. MEDDUN MUTTESIL — مد متصل</b><p>Iza obične dužine dolazi <b>hemze u istoj riječi</b>.</p><p><b>Trajanje: 4 obične dužine (obavezno).</b></p><div class="arab">جَاءَ &nbsp; سُوءٌ</div></div>
+<div class="rule"><b>3. MEDDUN LĀZIM — مد لازم</b><p>Iza obične dužine u istoj riječi dolazi <b>sukūnun lāzim</b>, tj. stalni sākin.</p><p><b>Trajanje: 4 obične dužine (obavezno).</b></p><div class="arab">الآنَ &nbsp; وَلَا الضَّالِّينَ</div></div>
+<div class="rule"><b>4. MEDDUN ‘ĀRID — مد عارض</b><p>Nastaje kada predahnemo ili stanemo na riječi, a pred završnim harfom stoji obična dužina.</p><p><b>Trajanje pri stajanju: 1, 2–3 ili 4 obične dužine.</b> Ako se ne stane, ostaje obična dužina.</p><div class="arab">خَالِدُونَ &nbsp; نَسْتَعِينُ</div></div>
+<div class="rule"><b>5. MEDDU LĪN — مد لين</b><p>Kada su <b>وْ</b> ili <b>يْ</b> harfu līn (sākin, a prije njih fetha), a poslije njih u istoj riječi dođe stalni ili nestalni sukūn.</p><p><b>Trajanje: 1 ili najviše 2 obične dužine; najbolja je obična dužina.</b></p><div class="arab">خَوْفْ &nbsp; خَيْرْ</div></div>
+</div>
+<div class="note"><b>Zapamti:</b> munfesil = hemze u sljedećoj riječi; muttesil = hemze u istoj riječi; lāzim = stalni sukūn; ‘ārid = sukūn zbog stajanja; līn = وْ / يْ poslije fethe.</div>
+</div></div>
+</section>
+
+<section id="prepoznaj" class="tab hide">
+<div class="panel">
+<h2>Prepoznaj pravilo</h2>
+<div id="pq" class="q"></div><div id="pa" class="answers"></div><div id="ps" class="status"></div>
+
+</div>
+</section>
+
+<section id="spoji" class="tab hide">
+<div class="panel">
+<h2>Spoji harf sa pravilom</h2>
+<p class="small">Odaberi pravilo kojem pripada prikazani harf kada dolazi poslije nuna sākin ili tenvina.</p>
+<div id="letter" class="arab"></div><div id="ma" class="answers"></div><div id="ms" class="status"></div>
+<button class="btn" id="mnext" type="button">Novi harf</button>
+</div>
+</section>
+
+<section id="kviz" class="tab hide">
+<div class="panel">
+<h2>Završni ispit – 12 zadataka</h2>
+<div class="progress"><i id="bar"></i></div><div class="score" id="score">0 / 0</div>
+<div id="kq" class="q"></div><div id="ka" class="answers"></div><div id="ks" class="status"></div>
+<button class="btn hide" id="restart" type="button">Ponovi ispit</button>
+</div>
+</section>
+
+<div class="footer">Sadržaj pravila i primjeri zasnovani su na knjizi Ćamila Silajdžića i Ibrahima Trebinjca, <i>Tedžvid – Pravilno učenje Kur'ana</i>.</div>
+</div>
+
+<script>
+const root=document.querySelector('.wrap');
+const tabs=[...document.querySelectorAll('.tabs button')];
+tabs.forEach(b=>b.addEventListener('click',()=>{tabs.forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.tab').forEach(x=>x.classList.add('hide'));document.getElementById(b.dataset.tab).classList.remove('hide');if(b.dataset.tab==='prepoznaj')loadP();if(b.dataset.tab==='spoji')loadM();if(b.dataset.tab==='kviz'&&!quizStarted)startQuiz()}));
+const rules=['Izhar','Idgam sa gunnom','Idgam bez gunne','Iklab','Ihfa'];
+const qs=[
+['مِنْهُمْ','Izhar'],['قَوْمٍ هَادٍ','Izhar'],['مَنْ يَعْمَلْ','Idgam sa gunnom'],['مِنْ وَالٍ','Idgam sa gunnom'],
+['مِنْ رَبِّهِمْ','Idgam bez gunne'],['مِنْ لَدُنْهُ','Idgam bez gunne'],['مِنْ بَعْدِ','Iklab'],['سَمِيعٌ بَصِيرٌ','Iklab'],
+['مِنْ قَبْلِكَ','Ihfa'],['مِنْ شَيْءٍ','Ihfa'],['إِنْ كُنْتُمْ','Ihfa'],['مِنْ تَحْتِهَا','Ihfa']
+];
+function shuffle(a){
+ const b=[...a];
+ for(let i=b.length-1;i>0;i--){
+   const j=Math.floor(Math.random()*(i+1));
+   [b[i],b[j]]=[b[j],b[i]];
+ }
+ return b;
+}
+function answers(el,correct,cb){el.innerHTML='';shuffle(rules).forEach(r=>{let b=document.createElement('button');b.className='ans';b.textContent=r;b.addEventListener('click',()=>{[...el.children].forEach(x=>x.disabled=true);b.classList.add(r===correct?'correct':'wrong');if(r!==correct)[...el.children].find(x=>x.textContent===correct)?.classList.add('correct');cb(r===correct,correct)});el.appendChild(b)})}
+let pi=0, pDeck=[];
+function resetPDeck(){ pDeck=shuffle(qs); pi=0; }
+function loadP(){
+ if(!pDeck.length || pi>=pDeck.length) resetPDeck();
+ let q=pDeck[pi];document.getElementById('pq').innerHTML='<div class="arab">'+q[0]+'</div><div>Koje je pravilo?</div>';document.getElementById('ps').textContent='';answers(document.getElementById('pa'),q[1],(ok,c)=>{
+ document.getElementById('ps').textContent=ok?'✓ Tačno!':'✗ Tačno je: '+c;
+ setTimeout(()=>{pi++;loadP()},900);
+})}
+
+
+const groups={Izhar:['ء','ه','ع','ح','غ','خ'],'Idgam sa gunnom':['ي','ن','م','و'],'Idgam bez gunne':['ل','ر'],Iklab:['ب'],Ihfa:['ص','ذ','ث','ك','ج','ش','ق','س','د','ط','ز','ف','ت','ض','ظ']};
+let currentM;
+function loadM(){let flat=[];Object.entries(groups).forEach(([r,ls])=>ls.forEach(l=>flat.push([l,r])));currentM=flat[Math.floor(Math.random()*flat.length)];document.getElementById('letter').textContent='نْ + '+currentM[0];document.getElementById('ms').textContent='';answers(document.getElementById('ma'),currentM[1],(ok,c)=>document.getElementById('ms').textContent=ok?'✓ Tačno!':'✗ Ovaj harf pripada pravilu: '+c)}
+document.getElementById('mnext').addEventListener('click',loadM);
+
+let quizStarted=false, qi=0, points=0, quiz=[];
+function startQuiz(){quizStarted=true;qi=0;points=0;quiz=shuffle(qs).slice(0,12);renderQuiz()}
+function renderQuiz(){document.getElementById('score').textContent=points+' / '+qi;document.getElementById('bar').style.width=(qi/12*100)+'%';document.getElementById('ks').textContent='';
+if(qi>=quiz.length){document.getElementById('kq').innerHTML='<div class="score">Završeno! Rezultat: '+points+' / 12</div>';document.getElementById('ka').innerHTML='';document.getElementById('bar').style.width='100%';document.getElementById('restart').classList.remove('hide');return}
+let q=quiz[qi];document.getElementById('kq').innerHTML='<div class="arab">'+q[0]+'</div><div>Zadatak '+(qi+1)+': odredi pravilo.</div>';answers(document.getElementById('ka'),q[1],(ok,c)=>{if(ok)points++;document.getElementById('ks').textContent=ok?'✓ Tačno!':'✗ Tačno je: '+c;setTimeout(()=>{qi++;renderQuiz()},850)})}
+document.getElementById('restart').addEventListener('click',()=>{document.getElementById('restart').classList.add('hide');startQuiz()});
+loadP();loadM();
+
+function openLesson(i){
+ document.getElementById('lessonMenu').classList.add('hide');
+ document.querySelectorAll('.lessonPage').forEach(x=>x.classList.add('hide'));
+ document.getElementById('lesson'+i).classList.remove('hide');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function backLessons(){
+ document.querySelectorAll('.lessonPage').forEach(x=>x.classList.add('hide'));
+ document.getElementById('lessonMenu').classList.remove('hide');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
